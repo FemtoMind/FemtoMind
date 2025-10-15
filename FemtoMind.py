@@ -1,14 +1,17 @@
 import streamlit as st
 from smolagents import CodeAgent, OpenAIServerModel
 
-st.set_page_config(page_title="FemtoMind Chat", layout="wide")
-st.title("FemtoMind Chat")
+st.set_page_config(page_title="FemtoMind", layout="wide")
+st.title("Ask FemtoMind")
 
 # -------------------------------
 # Sidebar: API Key input
 # -------------------------------
 with st.sidebar:
-    st.header("API Key")
+
+    st.image("logo.png", width=200)
+
+    #st.header("API Key")
 
     # Always use text_input; store in session_state if submitted
     api_key = st.text_input("Gemini API Key", type="password")
@@ -26,6 +29,8 @@ if "api_key" not in st.session_state or not st.session_state.api_key:
     st.info("Please enter your Gemini API key in the sidebar to start chatting.")
     st.stop()
 
+
+
 # -------------------------------
 # Initialize Gemini model & agent
 # -------------------------------
@@ -35,7 +40,15 @@ model = OpenAIServerModel(
     api_key=st.session_state.api_key,
 )
 
-agent = CodeAgent(tools=[], model=model)
+
+import numpy
+import matplotlib
+matplotlib.use("Agg")
+
+agent = CodeAgent(tools=[], 
+          model=model,
+          additional_authorized_imports=["numpy", "matplotlib","matplotlib.pyplot"],
+      )
 
 # -------------------------------
 # Initialize chat history
