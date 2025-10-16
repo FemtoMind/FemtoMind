@@ -42,8 +42,8 @@ model = OpenAIServerModel(
 
 
 import numpy
-import matplotlib
-matplotlib.use("Agg")
+#import matplotlib
+#matplotlib.use("Agg")
 
 agent = CodeAgent(tools=[], 
           model=model,
