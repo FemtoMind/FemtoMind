@@ -43,7 +43,9 @@ model = OpenAIServerModel(
 
 import numpy
 import matplotlib
-matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+#matplotlib.use("Agg")
+
 
 agent = CodeAgent(tools=[], 
           model=model,
@@ -67,6 +69,10 @@ for msg in st.session_state.messages:
 # Chat input (must be at top-level)
 # -------------------------------
 prompt = st.chat_input("Say something")
+
+
+
+
 
 if prompt:
     # Store user message
